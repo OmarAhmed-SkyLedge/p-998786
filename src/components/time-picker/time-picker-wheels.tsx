@@ -6,7 +6,9 @@ import { TimePickerColumn } from "./time-picker-column";
 export const TimePickerWheels = () => {
   // Generate all 52 weeks
   const weeks = Array.from({ length: 52 }, (_, i) => `${i + 1}`);
-  const years = ["2022", "2023", "2024", "2025", "2026", "2027", "2028"];
+  
+  // Generate years from 2025 to 2100
+  const years = Array.from({ length: 76 }, (_, i) => `${2025 + i}`);
 
   const [selectedWeek, setSelectedWeek] = React.useState("41");
   const [selectedYear, setSelectedYear] = React.useState("2025");
