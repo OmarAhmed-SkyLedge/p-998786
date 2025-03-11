@@ -23,11 +23,6 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
   const itemHeight = 40; // Height of each item in pixels
   const visibleItems = 5; // Number of visible items
   
-  // Calculate which items should be visible
-  const startIdx = Math.max(0, activeIndex - Math.floor(visibleItems / 2));
-  const endIdx = Math.min(values.length, startIdx + visibleItems);
-  const visibleValues = values.slice(Math.max(0, startIdx), endIdx);
-  
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
     setStartY(e.clientY);
