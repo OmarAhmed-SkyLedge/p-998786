@@ -1,3 +1,4 @@
+
 import TimePickerWheels from "@/components/time-picker/time-picker-wheels";
 
 const Index = () => {
@@ -6,11 +7,10 @@ const Index = () => {
       <div className="max-w-4xl w-full space-y-12">
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold text-white mb-4">
-            Time Picker Wheels Demo
+            Week & Year Picker
           </h1>
           <p className="text-xl text-gray-300">
-            An innovative time selection interface with smooth animations and
-            intuitive controls
+            An intuitive scrollable interface for selecting weeks and years
           </p>
         </div>
 
@@ -21,9 +21,10 @@ const Index = () => {
         <div className="bg-white/10 rounded-lg p-6 space-y-4">
           <h2 className="text-2xl font-semibold text-white">Features</h2>
           <ul className="list-disc list-inside text-gray-300 space-y-2">
-            <li>Intuitive wheel-based time selection</li>
-            <li>Smooth animations and transitions</li>
-            <li>Keyboard accessible navigation</li>
+            <li>Scrollable wheels for intuitive selection</li>
+            <li>All 52 weeks of the year available</li>
+            <li>Smooth fade effect for better visual experience</li>
+            <li>Mouse wheel and drag support for easy navigation</li>
             <li>Responsive design that works on all devices</li>
           </ul>
         </div>

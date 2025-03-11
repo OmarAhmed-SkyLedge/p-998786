@@ -1,9 +1,11 @@
+
 "use client";
 import * as React from "react";
 import { TimePickerColumn } from "./time-picker-column";
 
 export const TimePickerWheels = () => {
-  const weeks = ["38", "39", "40", "41", "42", "43", "44"];
+  // Generate all 52 weeks
+  const weeks = Array.from({ length: 52 }, (_, i) => `${i + 1}`);
   const years = ["2022", "2023", "2024", "2025", "2026", "2027", "2028"];
 
   const [selectedWeek, setSelectedWeek] = React.useState("41");
@@ -11,35 +13,35 @@ export const TimePickerWheels = () => {
 
   return (
     <div
-      className="bg-blend-luminosity backdrop-blur-[50px] bg-[rgba(128,128,128,0.30)] 
-                 flex items-stretch gap-4 text-[22px] text-white font-normal 
-                 whitespace-nowrap text-center px-[15px] py-4 rounded-[32px] 
-                 border-[1.4px] border-solid border-[rgba(255,255,255,0.40)]"
+      className="bg-blend-luminosity backdrop-blur-[50px] bg-[rgba(32,32,32,0.75)] 
+                 flex items-stretch gap-8 text-[22px] text-white font-normal 
+                 whitespace-nowrap text-center px-[30px] py-6 rounded-[32px] 
+                 border-[1.4px] border-solid border-[rgba(255,255,255,0.25)]
+                 shadow-lg"
       role="group"
       aria-label="Time Picker"
     >
-      <div className="text-2xl text-white self-center">Week</div>
-
-      <div className="relative">
-        <TimePickerColumn
-          values={weeks}
-          activeIndex={weeks.indexOf(selectedWeek)}
-          onValueChange={setSelectedWeek}
-        />
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/0a841bbd70e041929849d4763144f95b/f6e83570bb3523be7274609088bacbce1676eeaa29434aac1e9d6b884d3559e0?placeholderIfAbsent=true"
-          alt=""
-          aria-hidden="true"
-          className="aspect-[0.31] object-contain w-16 fill-[linear-gradient(0deg,rgba(94,94,94,0.06)_0%,rgba(94,94,94,0.06)_100%),rgba(255,255,255,0.04)] absolute left-0 right-0 mx-auto"
-          style={{ top: "50%", transform: "translateY(-50%)" }}
-        />
+      <div className="flex flex-col items-center">
+        <div className="text-2xl text-white mb-2">Week</div>
+        <div className="relative w-[80px]">
+          <TimePickerColumn
+            values={weeks}
+            activeIndex={weeks.indexOf(selectedWeek)}
+            onValueChange={setSelectedWeek}
+          />
+        </div>
       </div>
 
-      <TimePickerColumn
-        values={years}
-        activeIndex={years.indexOf(selectedYear)}
-        onValueChange={setSelectedYear}
-      />
+      <div className="flex flex-col items-center">
+        <div className="text-2xl text-white mb-2">Year</div>
+        <div className="relative w-[80px]">
+          <TimePickerColumn
+            values={years}
+            activeIndex={years.indexOf(selectedYear)}
+            onValueChange={setSelectedYear}
+          />
+        </div>
+      </div>
     </div>
   );
 };
