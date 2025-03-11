@@ -75,8 +75,6 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
   
   return (
     <div className="flex flex-col items-stretch relative h-[200px]">
-      {label && <div className="text-2xl text-white mb-2">{label}</div>}
-      
       {/* Gradient fade at top */}
       <div className="absolute top-0 left-0 right-0 h-[60px] bg-gradient-to-b from-[rgba(32,32,32,0.9)] to-transparent z-10 pointer-events-none" />
       
@@ -94,15 +92,16 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
           className="flex flex-col items-center transition-transform"
           style={{ 
             transform: `translateY(${scrollOffset}px)`,
-            paddingTop: `${(visibleItems / 2) * itemHeight}px`,
-            paddingBottom: `${(visibleItems / 2) * itemHeight}px`,
           }}
         >
           {values.map((value, index) => {
             const distance = Math.abs(index - activeIndex);
             const isActive = index === activeIndex;
-            const opacity = distance === 0 ? 1 : Math.max(0, 1 - distance * 0.25);
-            const scale = distance === 0 ? 1 : Math.max(0.8, 1 - distance * 0.05);
+            
+            // Calculate position so active item is in the middle
+            const position = (index - activeIndex) * itemHeight;
+            const opacity = 1 - Math.min(1, distance * 0.3);
+            const scale = isActive ? 1 : Math.max(0.7, 1 - distance * 0.1);
             
             return (
               <div
@@ -111,13 +110,14 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
                 aria-selected={isActive}
                 onClick={() => onValueChange(value)}
                 className={cn(
-                  "cursor-pointer transition-all duration-200 flex items-center justify-center h-[40px]",
-                  isActive ? "text-white text-[29px] font-medium" : "text-[22px] text-white/70"
+                  "cursor-pointer transition-all duration-150 flex items-center justify-center h-[40px] absolute",
+                  isActive ? "text-white text-[29px] font-medium" : "text-[22px] text-white/60"
                 )}
                 style={{ 
-                  opacity, 
-                  transform: `scale(${scale})`,
-                  pointerEvents: distance > 2 ? "none" : "auto"
+                  opacity,
+                  transform: `translateY(${position}px) scale(${scale})`,
+                  top: "50%",
+                  marginTop: "-20px", // Half of itemHeight
                 }}
               >
                 {value}
