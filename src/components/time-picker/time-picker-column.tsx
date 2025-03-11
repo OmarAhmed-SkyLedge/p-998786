@@ -129,9 +129,6 @@ export const TimePickerColumn: React.FC<TimePickerColumnProps> = ({
       
       {/* Gradient fade at bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-[60px] bg-gradient-to-t from-[rgba(32,32,32,0.9)] to-transparent z-10 pointer-events-none" />
-      
-      {/* Indicator line for selected item */}
-      <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-white/30 transform -translate-y-1/2 pointer-events-none" />
     </div>
   );
 };
